@@ -1,0 +1,29 @@
+{
+  "name": "notes-api",
+  "version": "0.0.1",
+  "description": "Notes API",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "koa": "^2.4.1",
+    "koa-better-router": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarkSideOfTheCode/notes-api.git"
+  },
+  "keywords": [
+    "notes",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DarkSideOfTheCode/notes-api/issues"
+  },
+  "homepage": "https://github.com/DarkSideOfTheCode/notes-api#readme"
+}

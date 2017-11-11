@@ -9,6 +9,7 @@
     "koa-better-router": "^2.1.1",
     "koa-bodyparser": "^4.2.0",
     "koa-json": "^2.0.2",
+    "lodash": "^4.17.4",
     "mongoose": "^4.13.1"
   },
   "devDependencies": {

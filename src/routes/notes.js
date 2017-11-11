@@ -1,34 +1,24 @@
-const createNoteRoutes = ({ router, db }) => {
-  const Note = db.model('Note');
+const {
+  getNotes,
+  createNote,
+} = require('../controllers/notes');
 
-  router.get('/notes', (ctx, next) =>
-    Note.find({}, (err, notes) => {
-      if (err) {
-        return ctx.throw(500, err);
-      }
+const handleError = ctx => err => ctx.throw(500, err);
+
+const createNoteRoutes = ({ router, db }) => {
+  router.get('/notes', (ctx, next) => getNotes(db)
+    .then((notes) => {
       ctx.body = { notes };
       return next();
-    }));
+    })
+    .catch(handleError(ctx)));
 
-  router.post('/notes', (ctx, next) => {
-    const {
-      title,
-      description,
-    } = ctx.request.body;
-
-    const note = new Note({
-      title,
-      description,
-    });
-
-    return note.save((err) => {
-      if (err) {
-        return ctx.throw(500, err);
-      }
+  router.post('/notes', (ctx, next) => createNote(db, ctx.request.body)
+    .then((note) => {
       ctx.body = { note };
       return next();
-    });
-  });
+    })
+    .catch(handleError(ctx)));
 };
 
 module.exports = createNoteRoutes;

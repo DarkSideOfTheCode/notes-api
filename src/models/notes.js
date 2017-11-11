@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const timestamps = require('mongoose-timestamp');
+const mongooseDelete = require('mongoose-delete');
 
 const {
   Schema,
@@ -21,9 +23,11 @@ const createNotesModel = (db) => {
     },
     title: String,
     description: String,
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now },
-    deletedAt: { type: Date, default: Date.now },
+  });
+  noteSchema.plugin(timestamps);
+  noteSchema.plugin(mongooseDelete, {
+    deletedAt: true,
+    overrideMethods: true,
   });
 
   db.model('NoteType', noteTypeSchema);

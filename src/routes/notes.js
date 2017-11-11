@@ -2,6 +2,7 @@ const {
   getNotes,
   createNote,
   updateNote,
+  deleteNote,
 } = require('../controllers/notes');
 
 const handleError = ctx => err => ctx.throw(500, err);
@@ -36,6 +37,14 @@ const createNoteRoutes = ({ router, db }) => {
    */
   router.post('/notes', (ctx, next) => createNote(db, ctx.request.body)
     .then(sendNote(ctx, next))
+    .catch(handleError(ctx)));
+
+  /**
+   * Soft deletes a note
+   * @type {[type]}
+   */
+  router.delete('/notes/:id', (ctx, next) => deleteNote(db, ctx.params.id)
+    .then(next)
     .catch(handleError(ctx)));
 };
 

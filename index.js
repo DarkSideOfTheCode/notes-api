@@ -1,9 +1,15 @@
 const Router = require('koa-better-router');
 const Koa = require('koa');
-const createRoutes = require('./routes');
+const json = require('koa-json');
+require('dotenv').config();
+
+const createRoutes = require('./src/routes');
+const createModels = require('./src/models');
+
+const db = createModels();
 
 const router = Router().loadMethods();
-createRoutes(router);
+createRoutes({ router, db });
 
 const api = Router({ prefix: '/v1' });
 
@@ -12,6 +18,7 @@ api.extend(router);
 
 const app = new Koa();
 
+app.use(json());
 app.use(router.middleware());
 app.use(api.middleware());
 

@@ -1,7 +1,7 @@
 const notes = require('./notes');
 
-const createRoutes = (router) => {
-  notes(router);
+const createRoutes = (params) => {
+  notes(params);
 };
 
 module.exports = createRoutes;

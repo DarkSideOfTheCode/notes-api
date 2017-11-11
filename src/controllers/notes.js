@@ -29,6 +29,12 @@ const searchNotes = Note => new Promise((resolve, reject) => {
   });
 });
 
+/**
+ * Creates a new Note and saves it in DB
+ * @param  {MongooseConnection} db
+ * @param  {Object} params
+ * @return {Promise}
+ */
 const createNote = (db, params) => compose(
   // 2. Create a new Note.
   newNote(params),
@@ -36,6 +42,11 @@ const createNote = (db, params) => compose(
   getNoteModel,
 )(db);
 
+/**
+ * Gets all Notes from DB
+ * @param  {MongooseConnection} db
+ * @return {Promise}
+ */
 const getNotes = db => compose(
   // 2. Search notes
   searchNotes,

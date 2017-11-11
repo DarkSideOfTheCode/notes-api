@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
-const createNotesModel = (db) => {
-  const {
-    Schema,
-  } = mongoose;
-  const {
-    ObjectId,
-  } = Schema;
+const {
+  Schema,
+} = mongoose;
+const {
+  ObjectId,
+} = Schema;
 
+const createNotesModel = (db) => {
   const noteTypeSchema = new Schema({
     id: ObjectId,
     name: String,
